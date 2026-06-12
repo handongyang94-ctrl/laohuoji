@@ -1,89 +1,188 @@
-# Koubo Video Editor
+# Koubo Video Editor：中文口播剪辑 Skill
 
-A Codex skill and Remotion starter kit for Chinese talking-head short-video editing.
+这是一个面向中文口播短视频的 Codex 剪辑 Skill。
 
-This project turns short-video editing into a repeatable workflow instead of a pile of loose taste judgments. It covers oral-cut cleanup, repeated-take selection, B-roll decisions, music and sound checks, subtitle/layout verification, transparent motion overlays, real-person covers, and technical shot analysis.
+它不是“自动帮你一键剪完所有东西”的玩具，也不是只会给视频加字幕的包装模板。它更像一个有剪辑思维的工作流助手：帮你判断怎么选条、怎么保留意义、哪里该用 B-roll、字幕和卡片怎么避让、透明动效层怎么做、对标视频怎么拉片，并把这些判断变成可复查的流程。
 
-## What It Does
+## 核心定位
 
-- Stage-1 oral cut: select the best repeated takes, trim breath and dead air, preserve meaning units.
-- Finished-video workflow: meaning map, B-roll plan, music decision, captions, layout, render checks.
-- Transparent overlay workflow: alpha-channel motion graphics for Jianying/CapCut or other editors.
-- Cover workflow: 3:4 vertical cover based on a real extracted frame.
-- Technical shot analysis: turn a reference video into a timecoded analysis report and reproduction SOP.
-
-## Repository Layout
+一句话：
 
 ```text
-skills/koubo-video-editor/      Codex / Claude skill
-remotion-template/              Remotion template for overlays and covers
-docs/                           Usage guide and quality checklist
-install-to-codex.ps1            Windows installer for local Codex skill use
+用 AI 帮你建立剪辑判断和检查流程，但关键气口、时间线和最终成片仍然推荐人机结合。
 ```
 
-## Install The Skill
+我们的建议是：
 
-### Option 1: PowerShell
+- 原始素材、重复 take、气口、剪口播，优先在剪映、CapCut、Premiere 或你熟悉的剪辑软件里处理。
+- AI 可以帮你做意义单元拆解、选条规则、气口检查、重复表达检查、B-roll 规划、字幕/卡片安全区检查。
+- 如果要做自动剪辑，也要把它当成“候选粗剪”，不要把自动输出直接当最终成片。
+- 最终交付前，一定要回到时间线里人工看一遍切点、气口、字幕遮挡和画面节奏。
 
-From the repository root:
+## 核心功能
+
+### 1. 口播剪辑判断
+
+适合处理：
+
+- 重复拍摄的一句话
+- 选最后一条还是倒数第二条
+- 删除 NG、废话、假开头、拍摄提示
+- 气口收紧
+- 句子头尾有没有被剪掉
+- 意义单元有没有被误删
+
+它的重点不是机械切静音，而是判断：
+
+```text
+这一刀会不会伤到意思？
+这个停顿是废气口，还是判断落点？
+这条 take 是不是完整、自然、可信？
+```
+
+### 2. 成片工作流
+
+它不会把“口播剪完 + 字幕加上”冒充成片。
+
+真正的成片至少要过这些关：
+
+- 意义单元完整
+- 切点和气口自然
+- 有 B-roll 判断
+- 有音乐或明确静音理由
+- 字幕不挡脸、不挡产品、不挡证据
+- 知识卡片和动效不乱抢画面
+- 抽帧检查过关键画面
+- 最后 CTA 清楚
+
+### 3. 透明动效层
+
+这是这个 Skill 的重点能力之一。
+
+适合做：
+
+- 透明知识卡片
+- 开头信息卡
+- 进度条
+- 关键词提示
+- 评论/截图/证据卡
+- 可叠加到剪映或 CapCut 的 alpha 动效层
+
+原则：
+
+- 只输出透明动效，不把底片视频合进去。
+- 卡片要有固定锚点，不要一会儿左一会儿右。
+- 最密集的一帧必须检查，不能让字幕、卡片、进度条互相挡。
+- 透明层是为口播服务的，不是为了炫技。
+
+### 4. 技术拉片和复现 SOP
+
+这是另一个重点能力。
+
+它可以把一条参考视频拆成：
+
+- 一句话结论
+- 可复刻度评分
+- 时间轴拉片表
+- 内容线拆解
+- 技术线拆解
+- 镜头/字幕/动效/节奏/工具链推断
+- 可复用技术
+- 复现 SOP
+- 素材准备清单
+- 成本和难度估算
+
+硬标准：
+
+```text
+没有时间轴拉片表，就不算真正拉片。
+没有复现 SOP，就只是观后感。
+```
+
+这个模块专攻“拉技术”：画面怎么组织、字幕怎么避让、动效什么时候出现、界面证据怎么放、B-roll 为什么插在那里、如何用剪映/CapCut/Remotion 复刻。
+
+### 5. 封面
+
+封面不是主功能，只是附带能力。
+
+原则很简单：
+
+- 如果要真人封面，用视频里真实帧，不生成假脸。
+- 文字要服务视频主题。
+- 不把封面设计包装成这个 Skill 的核心卖点。
+
+## 仓库结构
+
+```text
+skills/koubo-video-editor/      Codex / Claude 可安装 Skill
+remotion-template/              透明动效层和封面用的 Remotion 模板
+docs/                           使用说明和质量检查清单
+install-to-codex.ps1            Windows 本地安装脚本
+```
+
+## 安装
+
+### 方法一：PowerShell
+
+在仓库根目录运行：
 
 ```powershell
 .\install-to-codex.ps1
 ```
 
-Restart Codex after installation.
+安装后重启 Codex。
 
-### Option 2: Manual Copy
+### 方法二：手动复制
 
-Copy this folder:
+把这个文件夹：
 
 ```text
 skills/koubo-video-editor
 ```
 
-to:
+复制到：
 
 ```text
-C:\Users\<your-user-name>\.codex\skills\koubo-video-editor
+C:\Users\<你的用户名>\.codex\skills\koubo-video-editor
 ```
 
-Restart Codex after copying.
+然后重启 Codex。
 
-## Example Prompts
+## 常用触发方式
 
-Stage-1 oral cut:
+### 做口播剪辑检查
 
 ```text
-Use koubo-video-editor to do a stage-1 oral cut. Source files are in xxx, script is in xxx. Focus on repeated takes, breath points, dead air, false starts, and logic order.
+用 koubo-video-editor 帮我检查这条口播粗剪。源视频在 xxx，脚本在 xxx。重点看选条、气口、重复表达、句子有没有剪断。气口我会在剪映里自己修，你给我问题清单和修改建议。
 ```
 
-Finished talking-head video:
+### 做透明动效层
 
 ```text
-Use koubo-video-editor to make a finished short video. Source video is in xxx, script is in xxx. Include B-roll, music, captions, knowledge cards, render checks, and final inspection.
+用 koubo-video-editor 给这个已经剪好的口播做透明动效层。不要合成底片，只输出可以叠进剪映的 alpha 视频。重点做知识卡片、关键词、进度条，并检查不要挡字幕和脸。
 ```
 
-Transparent overlay:
+### 做技术拉片
 
 ```text
-Use koubo-video-editor to create a transparent motion overlay for this rough cut. 1080p, 60fps, alpha channel, no base video composited.
+用 koubo-video-editor 拉这条参考视频。重点拆剪辑技术，不写影评。输出时间轴拉片表、技术动作表、工具链推断和复现 SOP。
 ```
 
-Technical shot analysis:
+### 做成片规划
 
 ```text
-Use koubo-video-editor to analyze this reference video technically. Focus on editing technique, not film criticism. Output a shot-analysis report and a reproduction SOP.
+用 koubo-video-editor 给这条口播做成片方案。先拆意义单元，再规划哪里保留真人、哪里加 B-roll、哪里加卡片、音乐怎么处理，最后给我检查清单。
 ```
 
-## Remotion Template
+## Remotion 模板
 
-The `remotion-template/` folder contains a minimal starting point for:
+`remotion-template/` 是一个起步模板，用来做：
 
-- transparent overlays
-- caption-safe knowledge cards
-- vertical cover stills
+- 透明动效层
+- 字幕安全的知识卡片
+- 简单封面静帧
 
-Run inside `remotion-template/`:
+进入 `remotion-template/` 后运行：
 
 ```bash
 npm install
@@ -92,35 +191,28 @@ npm run render:overlay
 npm run render:cover
 ```
 
-Place local assets in:
+素材放在：
 
 ```text
 remotion-template/public/assets/
 ```
 
-See `remotion-template/public/assets/README.md` for expected sample asset names.
+## 质量标准
 
-## Quality Standard
+这个项目最反对的偷懒是：
 
-This project intentionally refuses a common failure mode: calling a video "finished" just because speech is cut and captions exist.
+```text
+口播剪了，字幕有了，就说成片完成。
+```
 
-A finished video must pass:
+不行。
 
-- meaning lock
-- cut-point lock
-- rhythm check
-- B-roll / visual logic
-- music or silence decision
-- caption and layout safety
-- render stability
-- final visual pass
+成片至少要有剪辑判断、视觉判断、声音判断、字幕布局判断和最终抽帧检查。技术拉片至少要有时间轴表和复现 SOP。透明动效层至少要检查 alpha、尺寸、密集帧和遮挡。
 
-For technical shot analysis, a real deliverable must include a timecoded analysis table and a reproduction SOP. A summary without a timeline is not considered a real analysis.
+## 隐私边界
 
-## Privacy Boundary
+这是一个中性开源包，不包含私人素材、客户项目、账号数据、付费课程逐字稿、本机路径或历史成片。
 
-This repository is a neutral open-source package. It does not include private source videos, historical client projects, account data, transcripts from paid courses, or local workspace paths.
+## 许可证
 
-## License
-
-MIT License.
+MIT License。

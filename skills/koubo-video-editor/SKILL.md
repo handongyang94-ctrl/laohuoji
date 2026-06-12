@@ -7,9 +7,11 @@ description: Use this skill when the user wants to edit Chinese talking-head sho
 
 ## Core Promise
 
-Turn source footage plus a script into a publishable Chinese short video, or produce a clearly labeled stage asset such as a rough cut, transparent motion overlay, or cover.
+Turn source footage plus a script into a publishable Chinese short video, or produce a clearly labeled stage asset such as a rough cut, transparent motion overlay, cover, or technical shot-analysis report.
 
 Never call a talking-head video a finished video just because the speech is cut and captions exist. A finished video must pass meaning, cut-point, visual, B-roll, music/sound, layout, render, and final-inspection gates.
+
+This skill supports automatic editing, but the recommended workflow is human-in-the-loop. For breath points, precise cut points, sentence heads/tails, facial state, and timeline feel, ask the user to review or fix the actual timeline in Jianying/CapCut/Premiere or their preferred editor. Treat automatic cuts as candidates, not final truth.
 
 ## Modes
 
@@ -60,6 +62,8 @@ Rules:
 ### 4. Cover
 
 Use when the user asks for a cover image.
+
+Cover is a supporting capability, not the main promise of this skill. Do not oversell cover design when the user's real need is editing judgment, transparent overlays, or technical shot analysis.
 
 Rules:
 
