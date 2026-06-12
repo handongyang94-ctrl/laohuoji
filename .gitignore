@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+renders/
+out/
+
+# Local media and heavy assets
+*.mp4
+*.mov
+*.mkv
+*.avi
+*.wav
+*.mp3
+*.aac
+*.flac
+*.jpg
+*.jpeg
+*.png
+*.webp
+!remotion-template/public/assets/README.md
+
+# Logs
+*.log
+*.err
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Env / secrets
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

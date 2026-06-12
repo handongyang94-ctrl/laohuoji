@@ -1,0 +1,20 @@
+{
+  "name": "koubo-video-editor-remotion-template",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "studio": "remotion studio",
+    "render:overlay": "remotion render TransparentOverlay renders/transparent-overlay.mov --codec=prores --prores-profile=4444 --pixel-format=yuva444p10le",
+    "render:cover": "remotion still CoverStill renders/cover-3x4.png --image-format=png"
+  },
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "remotion": "latest"
+  },
+  "devDependencies": {
+    "@remotion/cli": "latest",
+    "@types/react": "latest",
+    "typescript": "latest"
+  }
+}
